@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EEEEEE;
+            color: #373A40;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #DC5F00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #686D76;
+            text-align: left;
+        }
+        th {
+            background-color: #DC5F00;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #EEEEEE;
+            color: #373A40;
+        }
+        tr:hover {
+            background-color: #686D76;
+            color: #EEEEEE;
+        }
+        a {
+            color: #DC5F00;
+            text-decoration: none;
+        }
+        .dark-mode {
+            background-color: #070F2B;
+            color: #9290C3;
+        }
+        .dark-mode th {
+            background-color: #1B1A55;
+        }
+        .dark-mode tr:nth-child(even) {
+            background-color: #535C91;
+            color: #EEEEEE;
+        }
+        .dark-mode tr:hover {
+            background-color: #9290C3;
+            color: #EEEEEE;
+        }
+        .dark-mode a {
+            color: #535C91;
+        }
+        .dark-mode input[type="submit"] {
+            background-color: #535C91;
+            color: #EEEEEE;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .dark-mode input[type="submit"]:hover {
+            background-color: #373A40;
+        }
+        .toggle-dark-mode {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .toggle-dark-mode button {
+            background-color: #DC5F00;
+            color: #EEEEEE;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .toggle-dark-mode button:hover {
+            background-color: #373A40;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Companies Directory</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="company : ${companies}">
+                <td th:text="${company.id}"></td>
+                <td th:text="${company.name}"></td>
+                <td th:text="${company.description}"></td>
+                <td>
+                    <a th:href="${company.url}" th:text="${company.url}" target="_blank">Visit Website</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="toggle-dark-mode">
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+</div>
+
+<script>
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+    }
+</script>
+
+</body>
+</html>
